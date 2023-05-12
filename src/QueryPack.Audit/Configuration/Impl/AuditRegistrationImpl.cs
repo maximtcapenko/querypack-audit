@@ -1,9 +1,9 @@
 namespace QueryPack.Audit.Configuration.Impl
 {
     using System;
+    using DispatchProxy.Extensions;
     using Microsoft.Extensions.DependencyInjection;
     using Services;
-    using DispatchProxy.Extensions;
     using Services.Impl;
 
     internal class AuditRegistrationImpl : IAuditRegistration

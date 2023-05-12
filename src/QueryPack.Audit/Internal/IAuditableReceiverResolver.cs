@@ -1,9 +1,10 @@
-namespace QueryPack.Audit.Services
+namespace QueryPack.Audit.Internal
 {
     using System.Collections.Generic;
     using System;
+    using Services;
 
-    public interface IAuditableReceiverResolver
+    internal interface IAuditableReceiverResolver
     {
         IEnumerable<IAuditableReceiver> Resolve(Type type);
     }

@@ -1,16 +1,23 @@
 namespace QueryPack.Audit.Extensions
 {
-    using Microsoft.Extensions.DependencyInjection;
+    using System;
     using Configuration;
     using Configuration.Impl;
     using Internal;
+    using Microsoft.Extensions.DependencyInjection;
     using Services;
     using Services.Impl;
-    using DispatchProxy.Extensions;
-    using System;
 
+    /// <summary>
+    /// Service collection extensions
+    /// </summary>
     public static class ServiceCollectionExtensions
     {
+        /// <summary>
+        /// Add audit components to DI container
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="registrationBuilder"></param>
         public static IServiceCollection AddAudit(this IServiceCollection self,
             Action<IAuditRegistration> registrationBuilder)
         {

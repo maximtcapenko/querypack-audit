@@ -6,7 +6,7 @@ namespace QueryPack.Audit.Internal
     using System.Threading;
     using System.Threading.Tasks;
     using Microsoft.Extensions.Hosting;
-    using QueryPack.Audit.Services;
+    using Services;
 
     internal class AuditableQueueReaderHostService : IHostedService, IDisposable
     {

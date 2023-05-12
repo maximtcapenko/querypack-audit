@@ -1,10 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.Extensions.DependencyInjection;
-
-namespace QueryPack.Audit.Services.Impl
+namespace QueryPack.Audit.Internal
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Microsoft.Extensions.DependencyInjection;
+    using Services;
+
     internal class AuditableReceiverResolverImpl : IAuditableReceiverResolver
     {
         private readonly IServiceProvider _serviceProvider;
