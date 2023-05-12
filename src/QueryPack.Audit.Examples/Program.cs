@@ -30,9 +30,9 @@
                      options.QueueReadIntervalInSeconds = 5;
                      options.ReceiveTimeoutInSeconds = 15;
                  })
-                       .AddContext<AuditContext>()
-                       .AddReceiver<EntityResult, EntityResultAuditableReceiver>()
-                       .AuditFor(new EntityAuditConfiguration()));
+                 .AddContext<AuditContext>()
+                 .AddReceiver<EntityResult, EntityResultAuditableReceiver>()
+                 .AuditFor(new EntityAuditConfiguration()));
            });
     }
 }
