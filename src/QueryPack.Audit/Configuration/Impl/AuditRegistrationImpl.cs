@@ -36,7 +36,7 @@ namespace QueryPack.Audit.Configuration.Impl
         public IAuditRegistration AddContext<TContext>()
             where TContext : class, IDependencyContext
         {
-            _services.AddTransient<TContext>(); //TODO: check lifetime
+            _services.AddTransient<TContext>();
 
             return this;
         }
