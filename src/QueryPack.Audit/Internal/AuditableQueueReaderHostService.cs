@@ -6,7 +6,7 @@ namespace QueryPack.Audit.Internal
     using System.Threading;
     using System.Threading.Tasks;
     using Microsoft.Extensions.Hosting;
-    using Services;
+    using Microsoft.Extensions.Logging;
 
     internal class AuditableQueueReaderHostService : IHostedService, IDisposable
     {
@@ -16,15 +16,18 @@ namespace QueryPack.Audit.Internal
         private readonly QueueReaderOptions _options;
         private readonly AuditableQueue _queue;
         private readonly IAuditableReceiverResolver _receiverResolver;
+        private readonly ILogger<AuditableQueueReaderHostService> _logger;
         private const int DefaultServiceFirstRunAfterSeconds = 2;
 
         public AuditableQueueReaderHostService(AuditableQueue queue,
             QueueReaderOptions options,
+            ILogger<AuditableQueueReaderHostService> logger,
             IAuditableReceiverResolver receiverResolver)
         {
             _options = options;
             _queue = queue;
             _receiverResolver = receiverResolver;
+            _logger = logger;
         }
 
         private async Task RunJobAsync()
@@ -55,6 +58,7 @@ namespace QueryPack.Audit.Internal
 
                 if (failedAudiatables.Any())
                 {
+                    _logger.LogWarning($"Re enqueueing of {failedAudiatables.Count} failed audiatable objects");
                     _queue.Enqueue(failedAudiatables);
                 }
 
@@ -85,8 +89,9 @@ namespace QueryPack.Audit.Internal
                     await RunJobAsync();
                 }
             }
-            catch (Exception)
+            catch (Exception exception)
             {
+                _logger.LogError(exception, "Failed execution");
             }
 
             _timer?.Change(TimeSpan.FromSeconds(_options.QueueReadIntervalInSeconds), TimeSpan.FromMilliseconds(-1));
