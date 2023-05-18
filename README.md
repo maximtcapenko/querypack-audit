@@ -31,7 +31,7 @@ static IHostBuilder CreateHostBuilder(string[] args) => Host.CreateDefaultBuilde
       .ConfigureServices((hostContext, services) =>
       {
           services.AddTransient<IEntityService, EntityService>();
-          services.AddAudit(regestry =>
+          services.AddAudit(registry =>
           regestry.ConfigureOptions(options =>
           {
               options.QueueReadBatchSize = 50;
