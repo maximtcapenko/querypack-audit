@@ -32,7 +32,7 @@ static IHostBuilder CreateHostBuilder(string[] args) => Host.CreateDefaultBuilde
       {
           services.AddTransient<IEntityService, EntityService>();
           services.AddAudit(registry =>
-          regestry.ConfigureOptions(options =>
+          registry.ConfigureOptions(options =>
           {
               options.QueueReadBatchSize = 50;
               options.QueueReadIntervalInSeconds = 5;
