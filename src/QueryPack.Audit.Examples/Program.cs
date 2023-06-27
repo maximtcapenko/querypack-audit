@@ -23,8 +23,8 @@
            .ConfigureServices((hostContext, services) =>
            {
                services.AddTransient<IEntityService, EntityService>();
-               services.AddAudit(regestry =>
-               regestry.ConfigureOptions(options =>
+               services.AddAudit(registry =>
+               registry.ConfigureOptions(options =>
                  {
                      options.QueueReadBatchSize = 50;
                      options.QueueReadIntervalInSeconds = 5;
