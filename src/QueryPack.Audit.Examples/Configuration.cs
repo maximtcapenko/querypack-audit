@@ -11,7 +11,7 @@ namespace QueryPack.Audit.Examples
                 async (ctx, service, id, arg, token, invoker) =>
                 {
                     var result = await invoker.Invoke();
-                    ctx.Sender.Send(result);
+                    await ctx.Sender.SendAsync(result);
 
                     return result;
                 }));

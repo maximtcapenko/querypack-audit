@@ -24,7 +24,7 @@ namespace QueryPack.Audit.Extensions
             self.AddHostedService<AuditableQueueReaderHostService>();
             self.AddSingleton<AuditableQueue>();
             self.AddSingleton<IAuditableReceiverResolver, AuditableReceiverResolverImpl>();
-            self.AddSingleton<IAuditableSender, AuditableSenderImpl>();
+            self.AddSingleton<IAuditableSender, InMemoryQueueAuditableSenderImpl>();
 
             var registration = new AuditRegistrationImpl(self);
             registrationBuilder(registration);

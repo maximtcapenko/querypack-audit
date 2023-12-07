@@ -1,6 +1,7 @@
 namespace QueryPack.Audit.Services
 {
     using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// Sends auditable objects to a queue for further retrieval by receivers
@@ -12,14 +13,14 @@ namespace QueryPack.Audit.Services
         /// </summary>
         /// <typeparam name="TAuditable"></typeparam>
         /// <param name="auditable"></param>
-        void Send<TAuditable>(TAuditable auditable) 
+        Task SendAsync<TAuditable>(TAuditable auditable) 
             where TAuditable : class;
         /// <summary>
         /// Sends a batch of objects
         /// </summary>
         /// <typeparam name="TAuditable"></typeparam>
         /// <param name="auditables"></param>
-        void Send<TAuditable>(IEnumerable<TAuditable> auditables) 
+        Task SendAsync<TAuditable>(IEnumerable<TAuditable> auditables) 
             where TAuditable : class;
     }
 }
